@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { createAuthUserRefDocument, createAuthUserWithEmailAndPassword } from "../../utilities/firebase/firebase";
+
+import {
+  createAuthUserRefDocument,
+  createAuthUserWithEmailAndPassword,
+} from "../../utilities/firebase/firebase";
+
+import FormInput from "../formInput/formInput.component";
+
+import './signUp.styles.scss'
 
 const defaultFormFields = {
   displayName: "",
@@ -14,44 +22,46 @@ const SignUp = () => {
   const { displayName, email, password, confirmPassword } = formFields;
 
   const handleChange = (event) => {
-    const { name, value } = event.target
-    setFormFields({...formFields, [name]: value})
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
   };
 
   const resetFormfields = () => {
-    setFormFields(defaultFormFields)
-  }
+    setFormFields(defaultFormFields);
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     if (password !== confirmPassword) {
-        alert('password does not match')
-        return;
+      alert("password does not match");
+      return;
     }
 
     try {
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
 
-        const { user } = await createAuthUserWithEmailAndPassword(email, password)
+      await createAuthUserRefDocument(user, { displayName });
 
-        await createAuthUserRefDocument(user, { displayName })
-
-        resetFormfields()
-        
+      resetFormfields();
     } catch (error) {
-        if(error.code === 'auth/email-already-in-use') {
-            alert('cannot create user, email already in use')
-        } else {
-            console.log(error)
-        }
+      if (error.code === "auth/email-already-in-use") {
+        alert("cannot create user, email already in use");
+      } else {
+        console.log(error);
+      }
     }
-  } 
+  };
 
   return (
     <div className="signup-container">
+      <h3>Don't have an account, register with your email and password</h3>
       <form onSubmit={handleSubmit}>
-        <label>Enter Name</label>
-        <input
+        <FormInput
+          label="Enter Name"
           type="text"
           onChange={handleChange}
           name="displayName"
@@ -59,8 +69,8 @@ const SignUp = () => {
           required
         />
 
-        <label>Email</label>
-        <input
+        <FormInput
+          label="Email"
           type="email"
           onChange={handleChange}
           name="email"
@@ -68,8 +78,8 @@ const SignUp = () => {
           required
         />
 
-        <label>Enter Password</label>
-        <input
+        <FormInput
+          label="Password"
           type="password"
           onChange={handleChange}
           name="password"
@@ -77,8 +87,8 @@ const SignUp = () => {
           required
         />
 
-        <label>Confirm Password</label>
-        <input
+        <FormInput
+          label="confirm Password"
           type="password"
           onChange={handleChange}
           name="confirmPassword"

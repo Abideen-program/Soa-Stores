@@ -19,7 +19,7 @@ const Header = () => {
             SHOP
           </Link>
 
-          <Link className="nav-links" to="signIn">
+          <Link className="nav-links" to="auth">
             <svg
               className="login-icon"
               stroke="currentColor"
