@@ -4,6 +4,7 @@ import {
   createAuthUserRefDocument,
   createAuthUserWithEmailAndPassword,
 } from "../../utilities/firebase/firebase";
+import Button from "../button/button.component";
 
 import FormInput from "../formInput/formInput.component";
 
@@ -96,7 +97,7 @@ const SignUp = () => {
           required
         />
 
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );

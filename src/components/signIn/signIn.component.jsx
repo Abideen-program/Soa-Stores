@@ -1,10 +1,12 @@
 import { useState } from "react";
 
+import { Link } from 'react-router-dom'
+
 import {
   createAuthUserRefDocument,
-  createAuthUserWithEmailAndPassword,
   signInWithGooglePopup
 } from "../../utilities/firebase/firebase";
+import Button from "../button/button.component";
 
 import FormInput from "../formInput/formInput.component";
 
@@ -75,9 +77,10 @@ const SignIn = () => {
         />
 
         <div className="buttons-container">
-          <button type="submit">Sign Up</button>
-          <button onClick={logGoogleUser}>Google sign in</button>
+          <Button type="submit">Sign In</Button>
+          <Button buttonType={'google'} onClick={logGoogleUser}>Google sign in</Button>
         </div>
+        <p>Don't have an account, register <Link to='/header/signUp'>here</Link> </p>
       </form>
     </div>
   );

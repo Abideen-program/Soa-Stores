@@ -1,0 +1,46 @@
+.button-container {
+    min-width: 165px;
+    width: auto;
+    height: 50px;
+    line-height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    
+    &:hover{
+        background: white;
+        color: black;
+        border: 1px solid black;
+    }
+
+    &.inverted-button{
+        background: white;
+        color: black;
+        border: 1px solid black;
+
+        &:hover{
+            background: black;
+            color: white;
+            border: 1px solid white;
+        }
+    }
+
+    &.google-button{
+        background: #0360f7;
+        color: white;
+
+        &:hover{
+            background: white;
+            color: #0360f7;
+            border: 1px solid #0360f7;
+        }
+    }
+    
+    
+}

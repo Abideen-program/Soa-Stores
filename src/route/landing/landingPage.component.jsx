@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Button from "../../components/button/button.component";
 import "./landingPage.styles.scss";
 
 const LandingPage = () => {
@@ -12,7 +13,7 @@ const LandingPage = () => {
           <p className="slogan">Your No 1. online female clothing store</p>
         </div>
         <Link to="header">
-          <button>Let's Shop</button>
+          <Button type='text' buttonType={'inverted'}>Let's Shop</Button>
         </Link>
       </div>
     </div>
