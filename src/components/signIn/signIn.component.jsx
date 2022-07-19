@@ -1,11 +1,15 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 
 import { Link } from 'react-router-dom'
 
 import {
   createAuthUserRefDocument,
-  signInWithGooglePopup
+  signInWithGooglePopup,
+  signInAuthUserWithEmailAndPassword
 } from "../../utilities/firebase/firebase";
+
+
 import Button from "../button/button.component";
 
 import FormInput from "../formInput/formInput.component";
@@ -34,7 +38,6 @@ const SignIn = () => {
   const logGoogleUser = async () => {
     const { user } = await signInWithGooglePopup();
     await createAuthUserRefDocument(user);
-    console.log(user);
   };
 
   const handleSubmit = async (event) => {
@@ -42,19 +45,27 @@ const SignIn = () => {
 
     try {
       
+      await signInAuthUserWithEmailAndPassword(email, password)
 
       resetFormfields();
+
     } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        alert("cannot create user, email already in use");
-      } else {
-        console.log(error);
+      switch(error.code) {
+        case ('auth/wrong-password'):
+          alert('you have entered the wrong password')
+          break;
+        case ('auth/user-not-found'):
+          alert('this user has not been registered')
+          break;
+        default:
+          console.log(error)
       }
     }
   };
 
   return (
     <div className="signin-container">
+      <h2>SOAStore.</h2>
       <h3>Already have an account, sign in with your email and password</h3>
       <form onSubmit={handleSubmit}>
 

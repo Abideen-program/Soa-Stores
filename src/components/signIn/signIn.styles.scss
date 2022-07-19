@@ -3,9 +3,22 @@
     flex-direction: column;
     width: 380px;
     text-align: center;
+    border: 1px solid grey;
+    padding: 20px;
+
+    h2{
+        font-size: 40px;
+        font-weight: bolder;
+        margin-bottom: 20px;
+    }
 
     h3{
         margin-top: 10px;
+    }
+
+    a{
+        color: blue;
+        text-decoration: underline;
     }
 
     .buttons-container{

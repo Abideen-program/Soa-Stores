@@ -3,9 +3,14 @@
     flex-direction: column;
     width: 380px;
     text-align: center;
+    border: 1px solid grey;
+    padding: 20px;
+    margin: 20px auto;
 
-    h3{
-        margin-top: 10px;
+    h2{
+        font-size: 40px;
+        font-weight: bolder;
+        margin-bottom: 20px;
     }
 }
 

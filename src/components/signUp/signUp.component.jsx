@@ -59,6 +59,7 @@ const SignUp = () => {
 
   return (
     <div className="signup-container">
+      <h2>SOAStore.</h2>
       <h3>Don't have an account, register with your email and password</h3>
       <form onSubmit={handleSubmit}>
         <FormInput
